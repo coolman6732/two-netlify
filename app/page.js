@@ -1,95 +1,167 @@
+'use client';
+
+import { useEffect } from 'react';
 import Image from "next/image";
-import styles from "./page.module.css";
+import Lottie from "lottie-react";
+import RobotCat2 from "@/public/lottie/robotCat2.json";
+import RobotCat from "@/public/lottie/robotCat.json";
+import styles from "./assets/css/style.module.css";
+import { Yeseva_One, Varela_Round, Baloo_2 } from "next/font/google";
+
+const yesevaOne = Yeseva_One({
+	variable: "--font-yeseva-sans",
+	subsets: ['latin'],
+	weight: '400',
+});
+
+const varelaRound = Varela_Round({
+	variable: '--font-varela-round',
+	subsets: ['latin'],
+	weight: '400',
+});
+
+const baloo = Baloo_2({
+	subsets: ['latin'],
+	weight: ['400', '700'],
+	style: ['normal'],
+});
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			var slider = new MasterSlider();
+			slider.setup('masterslider', {
+				width: 1580,
+				height: 768,
+				fullwidth: true,
+				autoHeight: true,
+				mouse: true,
+				view: "basic"
+			});
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+			// 初始化 WOW.js
+			const wow = new WOW({
+				boxClass: 'wow',
+				animateClass: 'animated',
+				offset: 0,
+				mobile: true,
+				live: true
+			});
+			wow.init(); // 啟動 WOW.js
+
+		}
+	}, []); // 空的依賴數組，確保僅在組件加載時執行一次
+
+	return (
+		<>
+			<div className={styles.banner}>
+				<div className={styles.inner}>
+					<h2 className={baloo.className}>
+						By Gamers <br /> <b> For Gamers</b>
+						<p className={baloo.className}>Crafting Immersive Experiences, Igniting Passion Across the Gaming Community</p>
+						<Image className={styles.appIcn} src="/images/appIcon.png" alt="appIcon" width={402} height={59} />
+					</h2>
+					<div className="master-slider ms-skin-default" id="masterslider">
+						<div className="ms-slide" data-delay="1">
+							<Image
+								className="ms-layer"
+								data-offset-x="200"
+								data-offset-y="-50"
+								data-origin="tr"
+								data-type="image"
+								data-resize="true"
+								data-effect="back(1000,true)"
+								data-duration="1300"
+								data-fixed="true"
+								data-delay="600"
+								data-parallax="-5"
+								data-ease="easeOutQuart"
+								src="/images/banIcn2.png"
+								alt="banner圖"
+								width={289}
+								height={351}
+								style={{ position: 'absolute' }}
+							/>
+							<Image
+								className="ms-layer"
+								data-offset-x="0"
+								data-offset-y="0"
+								data-origin="tl"
+								data-type="image"
+								data-resize="true"
+								data-effect="back(1000,true)"
+								data-duration="1300"
+								data-fixed="true"
+								data-delay="300"
+								data-parallax="4"
+								data-ease="easeOutQuart"
+								src="/images/banIcn1.png"
+								alt="banner圖"
+								width={702}
+								height={689}
+								style={{ position: 'absolute' }}
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<dl>
+				<div className={styles.inner}>
+					<h3 className={`${baloo.className} ${styles.whiteTitle}`}>Explore   Our Games</h3>
+					<p className={`${styles.info} ${styles['info--font--color']}`}>Embark on a strategic journey with Jump On, unwind with the casual charm of Feed the Cat, or plunge into an epic adventure with Ripple Delete. At LaiLai Games, we offer a gaming experience for every mood and moment. Explore our games and discover your next favorite today.</p>
+				</div>
+				<dd id='JumpOn' className={`${styles.row1} ${styles.ddBg} scroll-target `}>
+					<div className={styles.inner}>
+						<div className={styles.left}>
+							<p className={styles.info}>Adventure</p>
+							<h3 className={`${baloo.className} ${styles.title}`}>Jump On</h3>
+							<h4 className={styles.info}>Jump On, a strategy game from LaiLai Games, invites you to engage in captivating battles. Master the game, outsmart your opponents, and navigate through exciting challenges in this strategic journey.</h4>
+						</div>
+						<div className={styles.right}>
+							<Lottie
+								animationData={RobotCat}
+								className={`${styles.people} wow fadeInDown`}
+								loop={true}
+								data-wow-duration="0.5s"
+								data-wow-delay="0.8s"
+							/>
+							<Image className={`${styles["gameIcn"]} wow fadeInRight`} src="/images/row1IcnBg.png" alt="" width={630} height={403} layout="intrinsic" data-wow-duration="0.7s" data-wow-delay="0s" />
+						</div>
+					</div>
+				</dd>
+				<dd id='Cat' className={`${styles.row2} ${styles.ddBg} scroll-target `}>
+					<div className={styles.inner}>
+						<div className={styles.left}>
+							<Lottie
+								animationData={RobotCat2}
+								className={`${styles.people} wow fadeInDown`}
+								loop={true}
+								data-wow-duration="0.5s"
+								data-wow-delay="0.8s"
+							/>
+							<Image className={`${styles["gameIcn"]} wow fadeInLeft`} src="/images/row2IcnBg.png" alt="" width={630} height={403} layout="intrinsic" data-wow-duration="0.7s" data-wow-delay="0s" />
+						</div>
+						<div className={styles.right}>
+							<p className={styles.info}>Casual</p>
+							<h3 className={`${baloo.className} ${styles.title}`}>Feed the Cat</h3>
+							<h4 className={styles.info}>Feed the Cat, a casual game from LaiLai Games, offers a charming and relaxed gaming experience. Unwind with this easy-to-play game, perfect for quick breaks or leisurely play.</h4>
+						</div>
+					</div>
+				</dd>
+				<dd id="Ripple" className={`${styles.row3} ${styles.ddBg} scroll-target `}>
+					<div className={styles.inner}>
+						<div className={styles.left}>
+							<p className={styles.info}>Strategy</p>
+							<h3 className={`${baloo.className} ${styles.title}`}>Ripple Delete</h3>
+							<h4 className={styles.info}>Ripple Delete, an adventure game from LaiLai Games, takes you on a thrilling journey. Explore intriguing worlds, overcome challenges, and immerse yourself in this epic adventure filled with excitement and surprise.</h4>
+						</div>
+						<div className={styles.right}>
+							<Image className={`${styles.people} wow fadeInDown`} src="/images/row3Icn.png" alt="" width={401} height={537} layout="intrinsic" data-wow-duration="0.2s" data-wow-delay="0.8s" />
+							<Image className={`${styles["gameIcn"]} wow fadeInRight`} src="/images/row3IcnBg.png" alt="" width={630} height={403} layout="intrinsic" data-wow-duration="0.7s" data-wow-delay="0s" />
+						</div>
+					</div>
+				</dd>
+			</dl>
+		</>
+	);
 }
