@@ -25,32 +25,45 @@ const baloo = Baloo_2({
 	weight: ['400', '700'],
 	style: ['normal'],
 });
+const loadScript = (src, onLoad) => {
+	const script = document.createElement('script');
+	script.src = src;
+	script.onload = onLoad;
+	document.body.appendChild(script);
+};
 
 export default function Home() {
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			var slider = new MasterSlider();
-			slider.setup('masterslider', {
-				width: 1580,
-				height: 768,
-				fullwidth: true,
-				autoHeight: true,
-				mouse: true,
-				view: "basic"
-			});
+			loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js', () => {
 
-			// 初始化 WOW.js
-			const wow = new WOW({
-				boxClass: 'wow',
-				animateClass: 'animated',
-				offset: 0,
-				mobile: true,
-				live: true
-			});
-			wow.init(); // 啟動 WOW.js
+				loadScript('/js/animatescroll.js');
 
+				loadScript('/js/masterslider.js', () => {
+					const slider = new MasterSlider();
+					slider.setup('masterslider', {
+						width: 1680,
+						height: 700,
+						fullwidth: true,
+						autoHeight: true,
+						mouse: true,
+						view: 'basic',
+					});
+
+					loadScript('/js/wow.min.js', () => {
+						const wow = new WOW({
+							boxClass: 'wow',
+							animateClass: 'animated',
+							offset: 0,
+							mobile: true,
+							live: true,
+						});
+						wow.init();
+					});
+				});
+			});
 		}
-	}, []); // 空的依賴數組，確保僅在組件加載時執行一次
+	}, []);
 
 	return (
 		<>
@@ -125,7 +138,7 @@ export default function Home() {
 								data-wow-duration="0.5s"
 								data-wow-delay="0.8s"
 							/>
-							<Image className={`${styles["gameIcn"]} wow fadeInRight`} src="/images/row1IcnBg.png" alt="" width={630} height={403} layout="intrinsic" data-wow-duration="0.7s" data-wow-delay="0s" />
+							<Image className={`${styles["gameIcn"]} wow fadeInRight`} src="/images/row1IcnBg.png" alt="" width={630} height={403} data-wow-duration="0.7s" data-wow-delay="0s" />
 						</div>
 					</div>
 				</dd>
@@ -139,7 +152,7 @@ export default function Home() {
 								data-wow-duration="0.5s"
 								data-wow-delay="0.8s"
 							/>
-							<Image className={`${styles["gameIcn"]} wow fadeInLeft`} src="/images/row2IcnBg.png" alt="" width={630} height={403} layout="intrinsic" data-wow-duration="0.7s" data-wow-delay="0s" />
+							<Image className={`${styles["gameIcn"]} wow fadeInLeft`} src="/images/row2IcnBg.png" alt="" width={630} height={403} data-wow-duration="0.7s" data-wow-delay="0s" />
 						</div>
 						<div className={styles.right}>
 							<p className={styles.info}>Casual</p>
@@ -156,8 +169,8 @@ export default function Home() {
 							<h4 className={styles.info}>Ripple Delete, an adventure game from LaiLai Games, takes you on a thrilling journey. Explore intriguing worlds, overcome challenges, and immerse yourself in this epic adventure filled with excitement and surprise.</h4>
 						</div>
 						<div className={styles.right}>
-							<Image className={`${styles.people} wow fadeInDown`} src="/images/row3Icn.png" alt="" width={401} height={537} layout="intrinsic" data-wow-duration="0.2s" data-wow-delay="0.8s" />
-							<Image className={`${styles["gameIcn"]} wow fadeInRight`} src="/images/row3IcnBg.png" alt="" width={630} height={403} layout="intrinsic" data-wow-duration="0.7s" data-wow-delay="0s" />
+							<Image className={`${styles.people} wow fadeInDown`} src="/images/row3Icn.png" alt="" width={401} height={537} data-wow-duration="0.2s" data-wow-delay="0.8s" />
+							<Image className={`${styles["gameIcn"]} wow fadeInRight`} src="/images/row3IcnBg.png" alt="" width={630} height={403} data-wow-duration="0.7s" data-wow-delay="0s" />
 						</div>
 					</div>
 				</dd>
